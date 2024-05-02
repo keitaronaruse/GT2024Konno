@@ -8,7 +8,7 @@ set xlabel font "Arial,12"
 set ylabel 'Position [m]'
 set ylabel font "Arial,12"
 
-set title 'Position of Leader and Follower at k = 1.0'
+set title 'Position of Leader and Follower at k = 20.0'
 set title font'Arial,12'
 
 set terminal png

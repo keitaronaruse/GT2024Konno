@@ -13,6 +13,7 @@
 #include <vector>
 
 int main( int argc, char* argv[] ) {
+    //  argv[ 1 ] = { 0.1, 1.0, 10.0, 11.0 }
     //  Simulation settings::Time
     const double t0 = 0.0, tT = 10.0, dT = 0.1;
     const int T = ( int ) ( ( tT - t0 ) / dT );
@@ -30,13 +31,13 @@ int main( int argc, char* argv[] ) {
     x1.at( 0 ) = -1.0;
 
     //  Simulation:: Kinematics
-    for( int t = 0; t < T; t++ ) {
+    for( int t = 1; t <= T; t++ ) {
         //  Leader-0
-        v0.at( t + 1 ) = v0.at( t );
-        x0.at( t + 1 ) = x0.at( t ) + dT * v0.at( t );
+        v0.at( t ) = v0.at( t - 1 );
+        x0.at( t ) = x0.at( t - 1 ) + dT * v0.at( t );
         //  Follower-1
-        v1.at( t + 1 ) = k * ( x0.at( t ) - x1.at( t ) - d );
-        x1.at( t + 1 ) = x1.at( t ) + dT * v1.at( t );
+        v1.at( t ) = k * ( x0.at( t - 1 ) - x1.at( t - 1 ) - d );
+        x1.at( t ) = x1.at( t - 1 ) + dT * v1.at( t );
     }
 
     //  Output a simulation result
