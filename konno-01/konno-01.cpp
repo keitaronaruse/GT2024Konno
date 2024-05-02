@@ -9,19 +9,17 @@
 
 #include <iostream>
 #include <iomanip>
+#include <string>
 #include <vector>
 
-int main( ) {
+int main( int argc, char* argv[] ) {
     //  Simulation settings::Time
     const double t0 = 0.0, tT = 10.0, dT = 0.1;
     const int T = ( int ) ( ( tT - t0 ) / dT );
     //  Taeget distance between robots
     const double d = 1.0;
     //  Control
-    // const double k = 0.1;
-    // const double k = 1.0;
-    // const double k = 10.0;
-    const double k = 11.0;
+    const double k = ( argc == 1 ) ? 0.0 : std::stod( argv[ 1 ] );
     //  Leader-0
     std::vector< double > v0( T + 1 ), x0( T + 1 );
     v0.at( 0 ) = 1.0;
@@ -42,11 +40,11 @@ int main( ) {
     }
 
     //  Output a simulation result
-    std::cout << "# k = " << k << std::endl;
-    std::cout << "# t     v0      x0      v1      x1" << std::endl;
+    std::cout << "# k = " << std::fixed << std::setprecision( 3 ) << k << std::endl;
+    std::cout << "# t, v0, x0, v1, x1" << std::endl;
     for( int t = 0; t <= T; t++ ) {
-        std::cout << std::fixed << std::setprecision( 3 ) << ( double ) t * dT << "\t" << v0.at( t ) << "\t"
-                  << x0.at( t ) << "\t" << v1.at( t ) << "\t" << x1.at( t ) << "\t" << std::endl;
+        std::cout << std::fixed << std::setprecision( 3 ) << ( double ) t * dT << ", " << v0.at( t ) << ", "
+                  << x0.at( t ) << ", " << v1.at( t ) << ", " << x1.at( t ) << std::endl;
     }
 
     return 0;
