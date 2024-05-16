@@ -13,7 +13,7 @@ set ylabel font "Arial,12"
 set title 'Position of Leader and Follower at k = 1.0'
 set title font'Arial,12'
 
-plot 'out-02.txt' u 1:3 w lp t 'Leader', 'out-02.txt' u 1:5 w lp t 'Follower'
+plot 'out-02.txt' u 1:3 w lp t 'Leader', 'out-02.txt' u 1:5 w lp t 'Follower-1', 'out-02.txt' u 1:7 w lp t 'Follower-2'
 
 set terminal qt
 set output

@@ -1,8 +1,8 @@
 /**
- * @file konno-01.cpp
- * @brief 1-Leader and 1-Follower in a 1D world
+ * @file konno-02.cpp
+ * @brief 1-Leader and 2-Follower in a 1D world, uni-directional
  * @author Keitaro Naruse
- * @date 2024-05-02
+ * @date 2024-05-16
  * @copyright MIT License
  * @details
  */
@@ -29,6 +29,10 @@ int main( int argc, char* argv[] ) {
     std::vector< double > v1( T + 1 ), x1( T + 1 );
     v1.at( 0 ) = 0.0;
     x1.at( 0 ) = -1.0;
+    //  Follower-2
+    std::vector< double > v2( T + 1 ), x2( T + 1 );
+    v2.at( 0 ) = 0.0;
+    x2.at( 0 ) = -2.0;
 
     //  Simulation:: Kinematics
     for( int t = 1; t <= T; t++ ) {
@@ -38,14 +42,18 @@ int main( int argc, char* argv[] ) {
         //  Follower-1
         v1.at( t ) = k * ( x0.at( t - 1 ) - x1.at( t - 1 ) - d );
         x1.at( t ) = x1.at( t - 1 ) + dT * v1.at( t );
+        //  Follower-2
+        v2.at( t ) = k * ( x1.at( t - 1 ) - x2.at( t - 1 ) - d );
+        x2.at( t ) = x2.at( t - 1 ) + dT * v2.at( t );
     }
 
     //  Output a simulation result
     std::cout << "# k = " << std::fixed << std::setprecision( 3 ) << k << std::endl;
-    std::cout << "# t, v0, x0, v1, x1" << std::endl;
+    std::cout << "# t, v0, x0, v1, x1, v2, x2" << std::endl;
     for( int t = 0; t <= T; t++ ) {
         std::cout << std::fixed << std::setprecision( 3 ) << ( double ) t * dT << ", " << v0.at( t ) << ", "
-                  << x0.at( t ) << ", " << v1.at( t ) << ", " << x1.at( t ) << std::endl;
+                  << x0.at( t ) << ", " << v1.at( t ) << ", " << x1.at( t ) << ", " << v2.at( t ) << ", " << x2.at( t )
+                  << std::endl;
     }
 
     return 0;
