@@ -15,3 +15,4 @@ set terminal png
 set output 'plot-01.png'
 plot 'out-01.txt' u 1:3 w lp t 'Leader', 'out-01.txt' u 1:5 w lp t 'Follower'
 set terminal qt
+set output
